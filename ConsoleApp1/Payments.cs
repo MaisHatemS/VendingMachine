@@ -21,6 +21,7 @@ namespace ConsoleApp1
         }
         public  void moneyDeposit(Snacks item)
         {
+            var cancelChargeRemaining = new List<double>();
             var total = 0.0;
             Console.WriteLine("*****   PAYMENT METHOD   ******");
             Console.WriteLine("PRESS 1 TO PAY IN COINS");
@@ -35,33 +36,52 @@ namespace ConsoleApp1
             switch (inputPayMethod)
             {
                 case 1:
-                    Console.WriteLine("ENTER COINS AMOUNT [DOMINATIONS 10c  20c  50c  $1 ]");
+                    Console.WriteLine("ENTER COINS AMOUNT IN CENTS [DOMINATIONS 10  20  50  100 ] ");
 
                     var option = Convert.ToDouble(Console.ReadLine());
                     if (CoinSlot.isValidInput(option))
                     {
-                        if (option != 1)
+                   
                             option = option * 0.01;
                         total += option;
+
                         while (total != item.Price && total < item.Price)
                         {
-                            if (option == 0)
-                            {
-
-                                snackVending.DisplayMenu();
-                            }
+                            cancelChargeRemaining.Add(option*100.0);
                             Console.WriteLine("The " + item.Name + "Price is :" + item.Price + " Remaining to Pay : " + (item.Price - total));
                             Console.WriteLine("PRESS 0 TO CANCEL PURCHASE");
 
                        
 
                                 option = Convert.ToInt32(Console.ReadLine());
-                                {
+                         
+                            if (option == 0)
+                            {
+                                Console.Write("Thank You ! Don't forget Your Inserted Money :");
 
-                                    if (option == 1)
-                                        option = 1 * 100;
+                                foreach (var i in cancelChargeRemaining)
+                                {
+                                    Console.Write(i+" ");
+
+                                }
+                              
+                                Environment.Exit(0);
+           
+                            }
+                            else
+                            {
+                              
+                                if (CoinSlot.isValidInput(option))
+                                {
+                                    option = option * 0.01;
                                     total += option;
                                 }
+                                else
+                                {
+                                    Console.WriteLine("INVALID INPUT");
+                                }
+
+                            }
 
                         }
 
@@ -74,7 +94,7 @@ namespace ConsoleApp1
                                 Console.Write("CALCULATING CHANGE: ");
                                 foreach (var coins in CoinSlot.GetTotalRemaining(total - item.Price))
                                 {
-                                    Console.Write(coins + "c ");
+                                    Console.Write(coins + " ");
                                 }
                                 Console.WriteLine();
 
@@ -120,7 +140,7 @@ namespace ConsoleApp1
                             {
                                 Console.WriteLine("MONEY ACCEPTED.");
                                 Console.WriteLine("SUCCESSFULLY PURCHASED " + item.Name);
-                                Console.WriteLine("CALCULATING CHANGE: " + (input - item.Price * 100.0)/ 100.0);
+                                Console.WriteLine("CALCULATING CHANGE: " + ((input - item.Price) * 100.0)/ 100.0);
                                 item.Amount -= 1;
                                 Console.WriteLine(item.Name + " REMAINING: " + item.Amount);
                                 Console.WriteLine("THANK YOU! HAVE A NICE DAY! :");
@@ -136,6 +156,7 @@ namespace ConsoleApp1
 
                     break;
                 case 3:
+                    cancelChargeRemaining.Clear();
                     Console.WriteLine("ENTER NOTES AMOUNT [ONLY ACCEPTS 20$ and 50$ ]");
                     var inputMoney = Convert.ToInt32(Console.ReadLine());
                     if (NotesSlot.isValidInput(inputMoney))
@@ -143,22 +164,39 @@ namespace ConsoleApp1
                         total += inputMoney;
                         while (total != item.Price && total < item.Price)
                         {
-                            if (inputMoney == 0)
-                            {
-
-                                snackVending.DisplayMenu();
-                            }
+                            cancelChargeRemaining.Add(inputMoney);
+                            
                             Console.WriteLine("The " + item.Name + "Price is :" + item.Price + " Remaining to Pay : " + (item.Price - total));
                             Console.WriteLine("PRESS 0 TO CANCEL PURCHASE");
-                           
-                           
-                                option = Convert.ToInt32(Console.ReadLine());
-                                {
+                            option = Convert.ToInt32(Console.ReadLine());
 
-                                    if (option == 1)
-                                        option = 1 * 100;
+                            if (option == 0)
+                            {
+                                Console.Write("Thank You ! Don't forget Your Inserted Money :");
+
+                                foreach (var i in cancelChargeRemaining)
+                                {
+                                    Console.Write(i + " ");
+
+                                }
+
+                                Environment.Exit(0);
+
+                            }
+                            else
+                            {
+
+                                if (NotesSlot.isValidInput(option))
+                                {
+                                    
                                     total += option;
                                 }
+                                else
+                                {
+                                    Console.WriteLine("INVALID INPUT");
+                                }
+
+                            }
 
 
 
@@ -199,7 +237,7 @@ namespace ConsoleApp1
 
                 case 4:
 
-                    snackVending.DisplayMenu();
+                    Environment.Exit(0);
 
                     break;
                 default:

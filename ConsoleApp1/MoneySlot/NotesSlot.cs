@@ -45,12 +45,11 @@ namespace ConsoleApp1.MoneySlot
                 foreach (var coin in raminingCoin)
                 {
 
-                    totalRemaining.Add(coin+"c");
+                    totalRemaining.Add(coin+" ");
                 }
              
 
             }
-
             return totalRemaining;
 
 

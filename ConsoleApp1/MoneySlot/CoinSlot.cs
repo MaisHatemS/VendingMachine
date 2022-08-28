@@ -30,9 +30,11 @@ namespace ConsoleApp1.MoneySlot
 
         public static bool isValidInput(double input)
         {
+            input = input/100.0;
             if (AcceptedCoins.Contains(input))
                 return true;
             else
+
                 return false;
         }
         public static List<double> GetTotalRemaining(double inputtotal)
@@ -51,7 +53,9 @@ namespace ConsoleApp1.MoneySlot
                         inputtotal = inputtotal - AcceptedCoins[i];
                         if (inputtotal <= 0)
                             break;
-
+                        if (inputtotal >= AcceptedCoins[i])
+                            i++;
+                      
                     }
 
                 }
