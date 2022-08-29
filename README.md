@@ -1,4 +1,4 @@
-# VendingMachine
+# C# VendingMachine
 
 # Specifications of the Snack Machine
 The Snack Machine has the following characteristics:
