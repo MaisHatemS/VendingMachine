@@ -19,7 +19,7 @@ namespace ConsoleApp1.MoneySlot
             else
                 return false;
         }
-        public static List<string> GetTotalRemaining(double inputtotal)
+        public static List<string> GetTotalRemaining(double inputtotal)//input total here is the total remaining 
         {
             List<string> totalRemaining = new List<string>();
             var Remaining = AcceptedNotes.Select(e => e).Where(e => inputtotal >= e).OrderByDescending(e => e).FirstOrDefault();
@@ -35,11 +35,13 @@ namespace ConsoleApp1.MoneySlot
                         inputtotal = inputtotal - AcceptedNotes[i];
                         if (inputtotal <= 0)
                             break;
+                        if (inputtotal >= AcceptedNotes[i])
+                            i++;
 
                     }
 
                 }
-            if (inputtotal > 0)
+            if (inputtotal > 0)//if its still have a remaining money then return the money as cents
             {
                 var raminingCoin = CoinSlot.GetTotalRemaining(inputtotal);
                 foreach (var coin in raminingCoin)

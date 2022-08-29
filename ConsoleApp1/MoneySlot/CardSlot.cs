@@ -21,7 +21,7 @@ namespace ConsoleApp1.MoneySlot
 
 
 
-        public static string IsCreditCardInfoValid(String cardNumber)
+        public static string IsCreditCardInfoValid(String cardNumber)//check if the card is valid and then return the card type
         {
             cardNumber = cardNumber.Replace(" ","");
 
