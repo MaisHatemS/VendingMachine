@@ -9,20 +9,17 @@ namespace ConsoleApp1
 {
     public class Payments:IPayment
     {
-        public ISnackVendingMachine snackVending;
+       
 
         public Payments()
         {
         }
 
-        public Payments(ISnackVendingMachine snackVending)
-        {
-            this.snackVending = snackVending;
-        }
+      
         public  void moneyDeposit(Snacks item)
         {
-            var cancelChargeRemaining = new List<double>();
-            var total = 0.0;
+            var cancelChargeRemaining = new List<double>();// the money that will back to the customer if he is cancel the payment 
+            var total = 0.0; // total money customer is entered 
             Console.WriteLine("*****   PAYMENT METHOD   ******");
             Console.WriteLine("PRESS 1 TO PAY IN COINS");
             Console.WriteLine("PRESS 2 TO PAY WITH CARD");
@@ -36,16 +33,17 @@ namespace ConsoleApp1
             switch (inputPayMethod)
             {
                 case 1:
+                    cancelChargeRemaining.Clear();
                     Console.WriteLine("ENTER COINS AMOUNT IN CENTS [DOMINATIONS 10  20  50  100 ] ");
 
                     var option = Convert.ToDouble(Console.ReadLine());
-                    if (CoinSlot.isValidInput(option))
+                    if (CoinSlot.isValidInput(option))// check if its a coin cents 
                     {
                    
                             option = option * 0.01;
                         total += option;
 
-                        while (total != item.Price && total < item.Price)
+                        while (total != item.Price && total < item.Price)//until the enter money is equal or more than the item price
                         {
                             cancelChargeRemaining.Add(option*100.0);
                             Console.WriteLine("The " + item.Name + "Price is :" + item.Price + " Remaining to Pay : " + (item.Price - total));

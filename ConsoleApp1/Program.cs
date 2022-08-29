@@ -14,7 +14,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             IPayment payment = new Payments();
-            ISnackVendingMachine machine = new SnackVendingMachine(payment);
+            SnackVendingMachine machine = new SnackVendingMachine(payment);
             machine.DisplayMenu();
 
         }

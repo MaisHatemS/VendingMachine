@@ -213,7 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPayment.cs" />
-    <Compile Include="ISnackVendingMachine.cs" />
     <Compile Include="MoneySlot\CardSlot.cs" />
     <Compile Include="MoneySlot\CoinSlot.cs" />
     <Compile Include="MoneySlot\NotesSlot.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class SnackVendingMachine:ISnackVendingMachine
+    public class SnackVendingMachine
     {
         public IPayment payment;
 
@@ -46,6 +46,7 @@ namespace ConsoleApp1
                     case "2":
                         Console.WriteLine("**************************************");
                         Console.WriteLine("THANK YOU! HAVE A NICE DAY!");
+                        Environment.Exit(0);
                         break;
                     default:
                         Console.WriteLine("INVALID OPTION :( TRY AGAIN");
@@ -80,11 +81,11 @@ namespace ConsoleApp1
 
             Console.WriteLine("PLEASE ENTER The Number OF THE DESIRED SNACK.");
             var userInput = Console.ReadLine();
-            if (SnacksList.Any(x=>x.ID.ToString() == userInput))
+            if (SnacksList.Any(x=>x.ID.ToString() == userInput))// check if there any number in the snack list equal to the user input
             {
-                var Snack = SnacksList.Select(e => e).Where(e => e.ID.ToString() == userInput).FirstOrDefault();
+                var Snack = SnacksList.Select(e => e).Where(e => e.ID.ToString() == userInput).FirstOrDefault();// get the fisrt element in the list that his id equal to the user input 
 
-                if (Snack.isAvailable())
+                if (Snack.isAvailable())// check if its amount more than 0 
                 {
                     Console.WriteLine(Snack .Name + " is AVAILABLE and the  PRICE: " + Snack.Price);
                     payment.moneyDeposit(Snack);

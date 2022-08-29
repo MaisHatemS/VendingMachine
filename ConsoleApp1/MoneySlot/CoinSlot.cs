@@ -9,10 +9,10 @@ namespace ConsoleApp1.MoneySlot
 {
     public class CoinSlot
     {
-        public static double TenCents { get; set; } = 0.10;
-        public static double TwentyCents { get; set; } = 0.20;
-        public static double fiftyCents { get; set; } = 0.50;
-        public static double OneDollar { get; set; } = 1;
+        public const double TenCents  = 0.10;
+        public const double TwentyCents = 0.20;
+        public const double fiftyCents  = 0.50;
+        public const double OneDollar = 1;
 
         public  static double[] AcceptedCoins = new double[] { 0.10, 0.20, 0.50, 1 };
      
