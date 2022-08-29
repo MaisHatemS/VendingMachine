@@ -219,8 +219,8 @@
     <Compile Include="Payments.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Snacks.cs" />
-    <Compile Include="SnacksData.cs" />
+    <Compile Include="Snack\Snacks.cs" />
+    <Compile Include="Snack\SnacksData.cs" />
     <Compile Include="SnackVendingMachine.cs" />
   </ItemGroup>
   <ItemGroup>
